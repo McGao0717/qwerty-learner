@@ -8,6 +8,11 @@ interface Word {
   example: string;
 }
 
+const nextWord = () => {
+  window.scrollTo(0, 0); 
+  setShowAnswer(false);
+  setCurrentIndex((prev) => (prev + 1) % words.length);
+};
 const A2ExamMode: React.FC = () => {
   const [words, setWords] = useState<Word[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
