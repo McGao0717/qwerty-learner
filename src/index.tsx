@@ -1,3 +1,4 @@
+import A2ExamMode from './pages/A2Exam/Index';
 import Loading from './components/Loading'
 import './index.css'
 import { ErrorBook } from './pages/ErrorBook'
@@ -56,6 +57,7 @@ function Root() {
               <Route path="/*" element={<Navigate to="/mobile" />} />
             ) : (
               <>
+                <Route path="/a2-exam" element={<A2ExamMode />} />
                 <Route index element={<TypingPage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/analysis" element={<AnalysisPage />} />
