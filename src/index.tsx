@@ -34,38 +34,32 @@ function Root() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 600)
-    }
+    const handleResize = () => setIsMobile(window.innerWidth <= 600)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
     <React.StrictMode>
+      {/* 确保不带任何 basename 属性 */}
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
           <Routes>
-            {/* 1. 考试模式：必须放在最上面，且不包含在 isMobile 的重定向逻辑内 */}
+            {/* 1. 考试模式：必须是第一优先级 */}
             <Route path="/a2-exam" element={<A2ExamMode />} />
 
-            {isMobile ? (
-              <>
-                <Route path="/mobile" element={<MobilePage />} />
-                {/* 排除 a2-exam 后的兜底 */}
-                <Route path="*" element={<Navigate to="/mobile" replace />} />
-              </>
-            ) : (
-              <>
-                <Route index element={<TypingPage />} />
-                <Route path="/gallery" element={<GalleryPage />} />
-                <Route path="/analysis" element={<AnalysisPage />} />
-                <Route path="/error-book" element={<ErrorBook />} />
-                <Route path="/friend-links" element={<FriendLinks />} />
-                {/* 电脑端兜底：仅当以上路径都不匹配时才跳回首页 */}
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </>
-            )}
+            {/* 2. 手机端逻辑 */}
+            <Route path="/mobile" element={<MobilePage />} />
+
+            {/* 3. 电脑端逻辑 */}
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/analysis" element={<AnalysisPage />} />
+            <Route path="/error-book" element={<ErrorBook />} />
+            <Route path="/friend-links" element={<FriendLinks />} />
+            <Route index element={isMobile ? <Navigate to="/mobile" replace /> : <TypingPage />} />
+
+            {/* 4. 终极兜底：防止任何 and 循环 */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
