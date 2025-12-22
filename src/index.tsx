@@ -29,6 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 
 function Root() {
   const darkMode = useAtomValue(isOpenDarkModeAtom)
+  
   useEffect(() => {
     darkMode ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
   }, [darkMode])
@@ -37,11 +38,8 @@ function Root() {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 600
-      if (!isMobile) {
-        window.location.href = '/'
-      }
-      setIsMobile(isMobile)
+      setIsMobile(window.innerWidth <= 600)
+      // 注意：已删除原有的 window.location.href = '/' 强制重定向，防止 a2-exam 路径被拦截
     }
 
     window.addEventListener('resize', handleResize)
@@ -50,14 +48,21 @@ function Root() {
 
   return (
     <React.StrictMode>
+      {/* 这里的 basename 根据你的部署环境自动调整 */}
       <BrowserRouter basename={REACT_APP_DEPLOY_ENV === 'pages' ? '/qwerty-learner' : ''}>
         <Suspense fallback={<Loading />}>
           <Routes>
+            {/* 1. 考试模式路由：放在最上方，确保全平台都能直接访问 */}
+            <Route path="/a2-exam" element={<A2ExamMode />} />
+
+            {/* 2. 根据设备分发主逻辑 */}
             {isMobile ? (
-              <Route path="/*" element={<Navigate to="/mobile" />} />
+              <>
+                <Route path="/mobile" element={<MobilePage />} />
+                <Route path="/*" element={<Navigate to="/mobile" />} />
+              </>
             ) : (
               <>
-                <Route path="/a2-exam" element={<A2ExamMode />} />
                 <Route index element={<TypingPage />} />
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/analysis" element={<AnalysisPage />} />
@@ -66,7 +71,6 @@ function Root() {
                 <Route path="/*" element={<Navigate to="/" />} />
               </>
             )}
-            <Route path="/mobile" element={<MobilePage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
