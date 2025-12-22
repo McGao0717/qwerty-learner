@@ -4124,7 +4124,15 @@ export const dictionaryResources: DictionaryResource[] = [
   ...germanExam,
   ...kazakhHapinDicts,
   ...indonesianDicts,
-
+  {
+  id: 'goethe-a2',
+  name: '歌德德语 A2 核心词汇',
+  description: 'Goethe-Zertifikat A2 Wortliste (1200+)',
+  category: 'german',
+  url: '/dicts/goethe-a2.json',
+  length: 705, // 根据你JSON行数估算的单词量，可自行精确修改
+  language: 'de',
+},
   // {
   //   id: 'zhtest',
   //   name: '中文测试',
@@ -4154,3 +4162,4 @@ export const dictionaries: Dictionary[] = dictionaryResources.map((resource) => 
  * An object-map from dictionary IDs to dictionary themselves.
  */
 export const idDictionaryMap: Record<string, Dictionary> = Object.fromEntries(dictionaries.map((dict) => [dict.id, dict]))
+
