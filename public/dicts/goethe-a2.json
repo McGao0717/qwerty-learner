@@ -198,6 +198,7 @@
   { "name": "euch", "trans": ["你们(代词)"], "notation": "Pron.", "example": "Ich danke euch." },
   { "name": "euer", "trans": ["你们的"], "notation": "Pron.", "example": "Ist das euer Auto?" },
 ]
+[
 { "name": "fahren", "trans": ["行驶", "搭乘"], "notation": "fährt, ist gefahren", "example": "Ich fahre mit dem Auto zur Arbeit." },
   { "name": "die Fahrkarte", "trans": ["车票"], "notation": "-n", "example": "Hast du schon eine Fahrkarte gekauft?" },
   { "name": "das Fahrrad", "trans": ["自行车"], "notation": "Fahrräder", "example": "Er fährt gern Fahrrad." },
@@ -385,6 +386,7 @@
   { "name": "die Luft", "trans": ["空气"], "notation": "f.", "example": "Die Luft hier ist sehr gut." },
   { "name": "lustig", "trans": ["有趣的"], "notation": "Adj.", "example": "Der Film war sehr lustig." },
 ]
+[
 { "name": "machen", "trans": ["做", "制作"], "notation": "macht, hat gemacht", "example": "Was machst du am Wochenende?" },
   { "name": "das Mädchen", "trans": ["女孩"], "notation": "-", "example": "Das Mädchen spielt im Garten." },
   { "name": "man", "trans": ["人们", "有人"], "notation": "Pron.", "example": "Hier darf man nicht rauchen." },
@@ -582,6 +584,7 @@
   { "name": "suchen", "trans": ["寻找"], "notation": "sucht, hat gesucht", "example": "Was suchst du?" },
   { "name": "süß", "trans": ["甜的", "可爱的"], "notation": "Adj.", "example": "Der Tee ist mir zu süß." },
 ]
+[
 { "name": "tablette", "trans": ["药片"], "notation": "-n", "example": "Du musst die Tabletten nehmen." },
   { "name": "tanzen", "trans": ["跳舞"], "notation": "tanzt, hat getanzt", "example": "Wollen wir tanzen?" },
   { "name": "die Tasche", "trans": ["包", "口袋"], "notation": "-n", "example": "Ich habe meinen Schlüssel in der Tasche." },
